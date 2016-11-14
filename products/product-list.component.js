@@ -24,7 +24,9 @@ var ProductListComponent = (function () {
     };
     ;
     ProductListComponent.prototype.ngOnInit = function () {
-        this.products = this._productService.getProducts();
+        var _this = this;
+        this._productService.getProducts()
+            .subscribe(function (products) { return _this.products = products; }, function (error) { return _this.errorMessage = error; });
     };
     ;
     ProductListComponent.prototype.onRatingClicked = function (message) {
@@ -32,10 +34,8 @@ var ProductListComponent = (function () {
     };
     ProductListComponent = __decorate([
         core_1.Component({
-            selector: 'pm-products',
-            moduleId: module.id,
-            templateUrl: 'product-list.component.html',
-            styleUrls: ['product-list.component.css']
+            templateUrl: 'app/products/product-list.component.html',
+            styleUrls: ['app/products/product-list.component.css']
         }), 
         __metadata('design:paramtypes', [product_service_1.ProductService])
     ], ProductListComponent);
